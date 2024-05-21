@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Dashboard.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Dashboard.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="300" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Whiteboard on the left side -->
+		<Border Grid.Column="0" Background="White" BorderBrush="Black" BorderThickness="1"
+                Name="WhiteboardBorder" DragDrop.AllowDrop="True">
+			<Canvas Name="Whiteboard" />
+		</Border>
+
+		<!-- List of controls on the right side -->
+		<StackPanel Grid.Column="1" Margin="10">
+			<TextBlock Text="Controls" FontWeight="Bold" Margin="0 0 0 10" />
+			<Border Background="LightGray" Name="ButtonTemplate" Tag="Button" Margin="0 0 0 10" Height="30" Width="100"
+                    PointerPressed="Control_PointerPressed">
+				<TextBlock Text="Button" VerticalAlignment="Center" HorizontalAlignment="Center" />
+			</Border>
+			<Border Background="LightGray" Name="TextBoxTemplate" Tag="TextBox" Margin="0 0 0 10" Height="30" Width="100"
+                    PointerPressed="Control_PointerPressed">
+				<TextBlock Text="TextBox" VerticalAlignment="Center" HorizontalAlignment="Center" />
+			</Border>
+			<Border Background="LightGray" Name="TextBlockTemplate" Tag="TextBlock" Margin="0 0 0 10" Height="30" Width="100"
+                    PointerPressed="Control_PointerPressed">
+				<TextBlock Text="TextBlock" VerticalAlignment="Center" HorizontalAlignment="Center" />
+			</Border>
+		</StackPanel>
+	</Grid>
+</UserControl>
